@@ -54,4 +54,5 @@ public class UserController {
         userService.deleteById(id);
         return "redirect:/users";
     }
+    //todo Почитай про @PatchMapping, DeleteMapping и т.д., лучше использовать их
 }
