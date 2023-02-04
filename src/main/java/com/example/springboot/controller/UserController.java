@@ -27,7 +27,8 @@ public class UserController {
     }
 
     @GetMapping("/user-create")
-    public String createUserForm(User user) {
+    public String createUserForm(User user, Model model) {
+        model.addAttribute("user", user);
         return "user-create";
     }
 
@@ -43,13 +44,13 @@ public class UserController {
         return "user-update";
     }
 
-    @PatchMapping("/user-update") // todo POST на PATCH
+    @PatchMapping("/user-update")
     public String updateUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/users";
     }
 
-    @DeleteMapping("/user-delete/{id}") //todo GET на DELETE
+    @DeleteMapping("/user-delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteById(id);
         return "redirect:/users";

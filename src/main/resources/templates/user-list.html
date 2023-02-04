@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>All users</title>
 </head>
+
 <body>
-
 <label>First Spring Boot App</label>
-
-<p><a href="/user-create">Create User</a></p>
-
+<br>
+<br>
+<form th:method="GET" th:action="user-create">
+    <button type="submit" class="btn btn-primary">Create User</button>
+</form>
+<br>
 <table border="1">
     <thead>
     <tr>
@@ -17,6 +21,7 @@
         <th>firstName</th>
         <th>lastName</th>
         <th>salary</th>
+        <th>actions</th>
     </tr>
     </thead>
     <tbody>
@@ -25,9 +30,15 @@
         <td th:text="${user.firstName}">firstName</td>
         <td th:text="${user.lastName}">lastName</td>
         <td th:text="${user.salary}">salary</td>
+        <td>
+            <form th:method="GET" th:action="@{user-update/{id}(id=${user.id})}">
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+            <form th:method="DELETE" th:action="@{user-delete/{id}(id=${user.id})}">
+                <button type="submit" class="btn btn-primary">Delete</button>
+            </form>
+        </td>
 
-        <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
-        <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
     </tr>
     </tbody>
 </table>
