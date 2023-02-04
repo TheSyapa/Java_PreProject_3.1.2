@@ -4,12 +4,14 @@ import com.example.springboot.model.User;
 import com.example.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@RequestMapping(method = {RequestMethod.DELETE, RequestMethod.PATCH})
 public class UserController {
 
     private final UserService userService;
@@ -43,16 +45,15 @@ public class UserController {
         return "user-update";
     }
 
-    @PostMapping("/user-update")
+    @PatchMapping("/user-update") // todo POST на PATCH
     public String updateUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/users";
     }
 
-    @GetMapping("/user-delete/{id}")
+    @DeleteMapping("/user-delete/{id}") //todo GET на DELETE
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteById(id);
         return "redirect:/users";
     }
-    //todo Почитай про @PatchMapping, DeleteMapping и т.д., лучше использовать их
 }
