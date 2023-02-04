@@ -4,14 +4,12 @@ import com.example.springboot.model.User;
 import com.example.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@RequestMapping(method = {RequestMethod.DELETE, RequestMethod.PATCH})
 public class UserController {
 
     private final UserService userService;
