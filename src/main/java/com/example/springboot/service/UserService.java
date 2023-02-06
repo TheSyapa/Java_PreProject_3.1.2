@@ -5,11 +5,11 @@ import com.example.springboot.model.User;
 import java.util.List;
 
 public interface UserService {
-    public List<User> findAll();
+    List<User> findAll();
 
-    public User saveUser(User user);
+    User saveUser(User user);
 
-    public void deleteById(Long id);
+    void deleteById(Long id);
 
-    public User findById(Long id);
+    User findById(Long id);
 }
